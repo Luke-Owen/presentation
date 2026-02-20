@@ -360,126 +360,57 @@ body {
   box-shadow: 0 0 8px var(--green);
 }
 
-/* ---- Conspiracy Generator ---- */
-.conspiracy-box {
+/* ---- Video Gallery ---- */
+.video-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.video-card {
   background: var(--bg-card);
   border: 1px solid #333;
-  padding: 2.5rem 2rem;
-  margin: 1.5rem 0;
-  min-height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-.conspiracy-box p {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: var(--text-bright);
+.video-card:hover {
+  border-color: var(--red);
+  box-shadow: 0 0 15px rgba(255, 0, 64, 0.2);
 }
 
-/* ---- Conspiracy Board ---- */
-#board-container {
+.video-card h3 {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--red);
+  letter-spacing: 1px;
+  padding: 1rem 1.2rem 0.4rem;
+}
+
+.video-card p {
+  font-size: 0.8rem;
+  color: var(--text);
+  line-height: 1.5;
+  padding: 0 1.2rem 1rem;
+  opacity: 0.7;
+}
+
+.video-wrapper {
   position: relative;
   width: 100%;
-  height: 500px;
-  background: var(--bg-card);
-  border: 1px solid #333;
-  margin: 1.5rem 0;
+  padding-bottom: 56.25%;
   overflow: hidden;
 }
 
-#board-canvas {
+.video-wrapper iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-}
-
-#board-nodes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
-
-.board-node {
-  position: absolute;
-  background: var(--bg);
-  border: 2px solid var(--red);
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-bright);
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  user-select: none;
-  z-index: 2;
-}
-
-.board-node:hover {
-  background: var(--red);
-  color: var(--bg);
-  box-shadow: 0 0 20px rgba(255, 0, 64, 0.5);
-  transform: scale(1.1);
-}
-
-.board-node.visited {
-  border-color: var(--green);
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-}
-
-/* ---- Evidence Popup ---- */
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.popup.hidden {
-  display: none;
-}
-
-.popup-inner {
-  background: var(--bg-card);
-  border: 2px solid var(--red);
-  padding: 2.5rem;
-  max-width: 500px;
-  width: 100%;
-  text-align: center;
-  animation: popup-in 0.3s ease-out;
-}
-
-.popup-inner h3 {
-  font-family: var(--font-display);
-  color: var(--red);
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  letter-spacing: 2px;
-}
-
-.popup-inner p {
-  color: var(--text);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-@keyframes popup-in {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  border: none;
 }
 
 /* ---- Personality Quiz ---- */
@@ -785,13 +716,8 @@ body {
     padding: 0.2rem 1rem;
   }
 
-  #board-container {
-    height: 400px;
-  }
-
-  .board-node {
-    font-size: 0.7rem;
-    padding: 0.4rem 0.7rem;
+  .video-gallery {
+    grid-template-columns: 1fr;
   }
 
   .finale-text {
@@ -838,9 +764,5 @@ body {
 
   .glitch.large {
     font-size: 1.5rem;
-  }
-
-  #board-container {
-    height: 350px;
   }
 }

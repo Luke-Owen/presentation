@@ -10,8 +10,7 @@ An interactive web experience exploring the Birds Aren't Real movement — the s
 
 - **The Movement** -- An interactive timeline of the real Birds Aren't Real movement, from Peter McIndoe's 2017 poster to the 2024 book deal
 - **Fact or Gov't Lie? Quiz** -- Can you tell real bird facts from "government drone" propaganda?
-- **Bird Truth Generator** -- Randomly generates absurd surveillance bird conspiracies
-- **The Evidence Board** -- A Pepe Silvia-style conspiracy board with clickable nodes (Power Lines, Project Ornithex, Bird Poop Tracking Compound, etc.)
+- **Surveillance Footage** -- Embedded videos of the movement's greatest hits: the TED Talk, 60 Minutes, viral news coverage, and the NYC rally
 - **How Awake Are You? Quiz** -- A personality quiz rating your bird awareness level
 - **The Final Truth** -- No spoilers. If it flies, it spies.
 

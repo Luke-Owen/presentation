@@ -203,162 +203,19 @@
 
     document.getElementById('slop-next-btn').addEventListener('click', function () {
       shakeScreen();
-      setTimeout(() => showSection('conspiracy-gen'), 500);
+      setTimeout(() => showSection('videos'), 500);
     });
   }
 
-  // ---- SECTION 4: Bird Truth Generator ----
-  const conspiracyParts = {
-    subjects: [
-      'The CIA', 'Your local pigeon', 'Seagulls', 'The Audubon Society',
-      'Robins', 'Elon Musk\'s satellites', 'Pelicans', 'Owls',
-      'The bird feeder industry', 'Crows', 'Canada geese',
-      'Ornithologists', 'Hummingbird drones', 'The Pentagon', 'Woodpeckers'
-    ],
-    actions: [
-      'are secretly recording', 'have been programmed to surveil',
-      'are transmitting data about', 'were deployed to monitor',
-      'are using sonic frequencies to track', 'were upgraded during COVID lockdowns to scan',
-      'are beaming footage of', 'have been weaponized to disrupt',
-      'are collecting DNA samples from', 'are running facial recognition on'
-    ],
-    objects: [
-      'your daily routine', 'dissidents who question the narrative',
-      'everyone who looks up', 'the entire midwest',
-      'anyone who feeds them bread', 'your license plate',
-      'all outdoor conversations', 'people who own cats',
-      'resistance members', 'anyone near a 5G tower',
-      'political rally attendees', 'anyone who has googled "birds aren\'t real"',
-      'couples in parks', 'children at playgrounds', 'your exact GPS coordinates'
-    ]
-  };
-
-  function generateConspiracy() {
-    const s = conspiracyParts.subjects[Math.floor(Math.random() * conspiracyParts.subjects.length)];
-    const a = conspiracyParts.actions[Math.floor(Math.random() * conspiracyParts.actions.length)];
-    const o = conspiracyParts.objects[Math.floor(Math.random() * conspiracyParts.objects.length)];
-    return s + ' ' + a + ' ' + o + '.';
-  }
-
-  function initConspiracyGen() {
-    const textEl = document.getElementById('conspiracy-text');
-    const genBtn = document.getElementById('generate-btn');
-    const copyBtn = document.getElementById('copy-btn');
-    const nextBtn = document.getElementById('gen-next-btn');
-
-    genBtn.addEventListener('click', function () {
-      shakeScreen();
-      textEl.style.opacity = '0';
-      setTimeout(() => {
-        textEl.textContent = generateConspiracy();
-        textEl.style.opacity = '1';
-        copyBtn.classList.remove('hidden');
-        nextBtn.classList.remove('hidden');
-      }, 300);
-    });
-
-    copyBtn.addEventListener('click', function () {
-      navigator.clipboard.writeText(textEl.textContent).then(() => {
-        copyBtn.textContent = 'TRUTH COPIED ✓';
-        setTimeout(() => { copyBtn.textContent = 'SHARE THIS TRUTH'; }, 2000);
-      });
-    });
-
-    nextBtn.addEventListener('click', function () {
-      shakeScreen();
-      setTimeout(() => showSection('conspiracy-board'), 500);
-    });
-  }
-
-  // ---- SECTION 5: Evidence Board ----
-  const boardData = [
-    { label: 'Power Lines', x: 15, y: 12, evidence: 'Why do birds sit on power lines? They\'re not resting. They\'re recharging. The voltage matches their battery specs exactly. High-voltage lines = fast charging. Low-voltage = trickle charge. Coincidence?' },
-    { label: 'Project Ornithex', x: 70, y: 8, evidence: 'In 1959, the CIA launched a classified program to replace every bird in North America with surveillance drones. By 1971, the project was complete. Budget: $14.2 billion. Status: Active. Evidence: classified.' },
-    { label: 'Bird Feeders', x: 45, y: 10, evidence: 'You\'re literally buying fuel for government surveillance equipment. Bird seed is chemically optimized drone fuel. The $5 billion "bird feed" industry is a Pentagon supply chain hiding in plain sight.' },
-    { label: 'Migration', x: 10, y: 50, evidence: 'Every year, billions of "birds" fly south. It\'s not instinct — it\'s a firmware update cycle. They return with upgraded cameras, better microphones, and refreshed GPS modules. Notice how they always come back to the SAME spot?' },
-    { label: 'Audubon Society', x: 80, y: 45, evidence: 'Founded in 1905 as a "conservation" group. Real purpose: managing the transition from biological birds to drones and ensuring nobody notices. Their binoculars point BOTH ways.' },
-    { label: 'Eggs', x: 50, y: 42, evidence: 'If birds are drones, what are eggs? Assembly pods. Factory farms aren\'t food production — they\'re drone manufacturing plants operating at industrial scale in plain sight. The "chicken or egg" question is a psyop.' },
-    { label: 'COVID Lockdowns', x: 25, y: 78, evidence: 'Remember 2020 when everyone stayed inside? They used that window to replace the batteries in every single bird. The pigeons looked different after. You noticed. You just didn\'t say anything.' },
-    { label: 'Cat Instincts', x: 75, y: 75, evidence: 'Cats attack birds on pure instinct. But cats predate drones by thousands of years. Either cats can detect surveillance technology innately, or the government has ALWAYS been watching. Both options are terrifying.' },
-    { label: 'Bird Poop', x: 50, y: 72, evidence: 'What you think is poop is actually a liquid tracking compound called Avian Discharged Residue Compound (ADRC). It marks your car for satellite identification. Ever wonder why it\'s always YOUR car? Now you know.' },
-    { label: 'Extinct Species', x: 40, y: 28, evidence: 'The dodo, the passenger pigeon, the great auk — they didn\'t go "extinct." They were prototype drones that got decommissioned. Version 1.0 bugs. Overheating issues. Had to recall them before anyone noticed.' }
-  ];
-
-  const boardConnections = [
-    [0, 3], [0, 6], [1, 4], [1, 9],
-    [2, 5], [2, 7], [3, 6], [4, 5],
-    [5, 8], [6, 7], [7, 8], [8, 9],
-    [0, 9], [1, 2], [3, 4], [6, 8]
-  ];
-
-  function initBoard() {
-    const container = document.getElementById('board-container');
-    const nodesEl = document.getElementById('board-nodes');
-    const canvas = document.getElementById('board-canvas');
-
-    function renderBoard() {
-      const w = container.offsetWidth;
-      const h = container.offsetHeight;
-      canvas.width = w;
-      canvas.height = h;
-
-      nodesEl.innerHTML = '';
-
-      const nodePositions = boardData.map(node => {
-        const el = document.createElement('div');
-        el.className = 'board-node';
-        el.textContent = node.label;
-        el.style.left = (node.x / 100 * w) + 'px';
-        el.style.top = (node.y / 100 * h) + 'px';
-        nodesEl.appendChild(el);
-
-        el.addEventListener('click', function () {
-          el.classList.add('visited');
-          showEvidence(node.label, node.evidence);
-        });
-
-        return {
-          x: (node.x / 100 * w) + el.offsetWidth / 2,
-          y: (node.y / 100 * h) + el.offsetHeight / 2
-        };
-      });
-
-      const ctx = canvas.getContext('2d');
-      ctx.strokeStyle = 'rgba(255, 0, 64, 0.4)';
-      ctx.lineWidth = 1;
-
-      boardConnections.forEach(function (conn) {
-        const from = nodePositions[conn[0]];
-        const to = nodePositions[conn[1]];
-        if (from && to) {
-          ctx.beginPath();
-          ctx.moveTo(from.x, from.y);
-          ctx.lineTo(to.x, to.y);
-          ctx.stroke();
-        }
-      });
-    }
-
-    renderBoard();
-    window.addEventListener('resize', renderBoard);
-
-    document.getElementById('evidence-close').addEventListener('click', function () {
-      document.getElementById('evidence-popup').classList.add('hidden');
-    });
-
-    document.getElementById('board-next-btn').addEventListener('click', function () {
+  // ---- SECTION 4: Surveillance Footage (Videos) ----
+  function initVideos() {
+    document.getElementById('videos-next-btn').addEventListener('click', function () {
       shakeScreen();
       setTimeout(() => showSection('personality-quiz'), 500);
     });
   }
 
-  function showEvidence(title, text) {
-    document.getElementById('evidence-title').textContent = '[ ' + title.toUpperCase() + ' ]';
-    document.getElementById('evidence-text').textContent = text;
-    document.getElementById('evidence-popup').classList.remove('hidden');
-  }
-
-  // ---- SECTION 6: Personality Quiz ----
+  // ---- SECTION 5: Personality Quiz ----
   const personalityQuestions = [
     {
       question: 'A pigeon lands near your lunch. You...',
@@ -481,7 +338,7 @@
     });
   }
 
-  // ---- SECTION 7: Finale ----
+  // ---- SECTION 6: Finale ----
   function initFinale() {
     const btn = document.getElementById('finale-btn');
     btn.addEventListener('click', function () {
@@ -511,8 +368,7 @@
     initLanding();
     initTimeline();
     initSlopQuiz();
-    initConspiracyGen();
-    initBoard();
+    initVideos();
     initPersonalityQuiz();
     initFinale();
   }

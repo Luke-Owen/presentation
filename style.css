@@ -297,6 +297,41 @@ body {
   user-select: none;
 }
 
+/* ---- Landing Page Videos ---- */
+.landing-videos {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.landing-vid {
+  width: 120px;
+  height: 213px;
+  overflow: hidden;
+  border: 1px solid var(--red);
+  box-shadow: 0 0 12px rgba(255, 0, 64, 0.3);
+  position: relative;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.landing-vid:hover {
+  opacity: 1;
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.6);
+}
+
+.landing-vid iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  transform: translate(-50%, -50%);
+  border: none;
+  pointer-events: none;
+}
+
 /* ---- Quiz Shared Styles ---- */
 .quiz-card {
   background: var(--bg-card);
@@ -714,6 +749,15 @@ body {
   .stamp {
     font-size: 0.7rem;
     padding: 0.2rem 1rem;
+  }
+
+  .landing-videos {
+    gap: 0.5rem;
+  }
+
+  .landing-vid {
+    width: 80px;
+    height: 142px;
   }
 
   .video-gallery {

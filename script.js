@@ -362,9 +362,60 @@
     });
   }
 
+  // ---- Landing Page Floating Famous Birds ----
+  function initLandingBirds() {
+    var landing = document.getElementById('landing');
+    if (!landing) return;
+
+    var birds = [
+      {
+        name: 'Twitter',
+        svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1DA1F2"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 002.048-2.578 9.3 9.3 0 01-2.958 1.13 4.66 4.66 0 00-7.938 4.25 13.229 13.229 0 01-9.602-4.868c-.4.69-.63 1.49-.63 2.342A4.66 4.66 0 003.96 9.824a4.647 4.647 0 01-2.11-.583v.06a4.66 4.66 0 003.737 4.568 4.692 4.692 0 01-2.104.08 4.661 4.661 0 004.352 3.234 9.348 9.348 0 01-5.786 1.995 9.5 9.5 0 01-1.112-.065 13.175 13.175 0 007.14 2.093c8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602a9.47 9.47 0 002.323-2.41z"/></svg>',
+        top: '10%', left: '5%', size: 60, delay: 0
+      },
+      {
+        name: 'Duolingo',
+        svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><ellipse cx="50" cy="60" rx="38" ry="42" fill="#58CC02"/><ellipse cx="42" cy="18" rx="6" ry="14" fill="#58CC02" transform="rotate(-10 42 18)"/><ellipse cx="58" cy="18" rx="6" ry="14" fill="#58CC02" transform="rotate(10 58 18)"/><circle cx="36" cy="48" r="14" fill="white"/><circle cx="64" cy="48" r="14" fill="white"/><circle cx="39" cy="50" r="7" fill="#333"/><circle cx="67" cy="50" r="7" fill="#333"/><ellipse cx="50" cy="72" rx="8" ry="5" fill="#FFC800"/></svg>',
+        top: '8%', right: '6%', size: 70, delay: 1.5
+      },
+      {
+        name: 'Tweety',
+        svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><circle cx="50" cy="42" r="36" fill="#FFD700"/><ellipse cx="50" cy="90" rx="16" ry="22" fill="#FFD700"/><circle cx="38" cy="36" r="13" fill="white"/><circle cx="62" cy="36" r="13" fill="white"/><circle cx="40" cy="38" r="6" fill="#2196F3"/><circle cx="64" cy="38" r="6" fill="#2196F3"/><circle cx="41" cy="36" r="2.5" fill="#111"/><circle cx="65" cy="36" r="2.5" fill="#111"/><polygon points="50,50 43,58 57,58" fill="#FF8C00"/><line x1="42" y1="18" x2="38" y2="5" stroke="#555" stroke-width="2.5" stroke-linecap="round"/><line x1="50" y1="14" x2="50" y2="1" stroke="#555" stroke-width="2.5" stroke-linecap="round"/><line x1="58" y1="18" x2="62" y2="5" stroke="#555" stroke-width="2.5" stroke-linecap="round"/></svg>',
+        bottom: '15%', left: '4%', size: 65, delay: 3
+      },
+      {
+        name: 'Angry Birds',
+        svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 110"><circle cx="50" cy="58" r="42" fill="#E5202E"/><polygon points="43,10 50,0 57,10 50,24" fill="#E5202E"/><circle cx="38" cy="50" r="11" fill="white"/><circle cx="62" cy="50" r="11" fill="white"/><circle cx="40" cy="52" r="5.5" fill="#333"/><circle cx="64" cy="52" r="5.5" fill="#333"/><line x1="26" y1="42" x2="44" y2="39" stroke="#333" stroke-width="4" stroke-linecap="round"/><line x1="74" y1="42" x2="56" y2="39" stroke="#333" stroke-width="4" stroke-linecap="round"/><polygon points="50,66 44,74 56,74" fill="#FFC800"/></svg>',
+        bottom: '12%', right: '5%', size: 58, delay: 4.5
+      },
+      {
+        name: 'Woodstock',
+        svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100"><circle cx="40" cy="38" r="22" fill="#FFD700"/><ellipse cx="40" cy="72" rx="14" ry="18" fill="#FFD700"/><circle cx="34" cy="34" r="4" fill="#333"/><polygon points="48,38 64,32 48,42" fill="#FF8C00"/><line x1="34" y1="18" x2="30" y2="6" stroke="#555" stroke-width="2" stroke-linecap="round"/><line x1="40" y1="16" x2="40" y2="4" stroke="#555" stroke-width="2" stroke-linecap="round"/><line x1="46" y1="18" x2="50" y2="6" stroke="#555" stroke-width="2" stroke-linecap="round"/></svg>',
+        top: '50%', left: '3%', size: 45, delay: 2
+      }
+    ];
+
+    birds.forEach(function (bird) {
+      var img = document.createElement('img');
+      img.src = 'data:image/svg+xml,' + encodeURIComponent(bird.svg);
+      img.alt = bird.name;
+      img.title = bird.name;
+      img.className = 'floating-bird';
+      img.style.width = bird.size + 'px';
+      img.style.height = 'auto';
+      img.style.animationDelay = bird.delay + 's';
+      if (bird.top) img.style.top = bird.top;
+      if (bird.bottom) img.style.bottom = bird.bottom;
+      if (bird.left) img.style.left = bird.left;
+      if (bird.right) img.style.right = bird.right;
+      landing.appendChild(img);
+    });
+  }
+
   // ---- Initialize Everything ----
   function init() {
     initMatrix();
+    initLandingBirds();
     initLanding();
     initTimeline();
     initSlopQuiz();

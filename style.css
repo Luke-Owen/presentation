@@ -1,0 +1,684 @@
+/* ========================================
+   AI SLOP & CONSPIRACY THEORY APP
+   Dark hacker / conspiracy aesthetic
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
+
+:root {
+  --green: #00ff41;
+  --green-dim: #00cc33;
+  --red: #ff0040;
+  --red-dim: #cc0033;
+  --yellow: #ffcc00;
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --bg-card-hover: #1a1a1a;
+  --text: #c0c0c0;
+  --text-bright: #ffffff;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-display: 'Orbitron', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ---- Matrix Background Canvas ---- */
+#matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+/* ---- Scanline Overlay ---- */
+.scanline-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ---- Sections ---- */
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 2rem 1rem;
+}
+
+.section.active {
+  display: flex;
+}
+
+.section-inner {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+}
+
+.section-inner.wide {
+  max-width: 1000px;
+}
+
+.section-inner.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.section-subtitle {
+  color: var(--text);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+/* ---- Glitch Text Effect ---- */
+.glitch {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--green);
+  position: relative;
+  text-shadow: 0 0 10px var(--green);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.glitch.large {
+  font-size: 3.5rem;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  animation: glitch-1 2s infinite linear alternate-reverse;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  color: var(--red);
+  text-shadow: -2px 0 var(--red);
+}
+
+.glitch::after {
+  animation: glitch-2 3s infinite linear alternate-reverse;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  color: #00ccff;
+  text-shadow: 2px 0 #00ccff;
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-3px, 2px); }
+  40% { transform: translate(3px, -1px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(2px, 1px); }
+  50% { transform: translate(-3px, -1px); }
+  75% { transform: translate(1px, 2px); }
+}
+
+/* ---- Classified / Top Secret Stamps ---- */
+.stamp {
+  display: inline-block;
+  border: 3px solid var(--red);
+  color: var(--red);
+  padding: 0.3rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  transform: rotate(-3deg);
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.stamp.top-secret {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  transform: rotate(2deg);
+}
+
+/* ---- Buttons ---- */
+.btn-danger {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  color: var(--red);
+  border: 2px solid var(--red);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+
+.btn-danger:hover {
+  background: var(--red);
+  color: var(--bg);
+  box-shadow: 0 0 30px rgba(255, 0, 64, 0.5);
+  transform: scale(1.05);
+}
+
+.btn-danger:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  padding: 0.7rem 1.8rem;
+  background: transparent;
+  color: var(--green);
+  border: 1px solid var(--green);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-secondary:hover {
+  background: var(--green);
+  color: var(--bg);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+.btn-choice {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 2px solid var(--green);
+  color: var(--green);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  letter-spacing: 1px;
+}
+
+.btn-choice:hover {
+  background: var(--green);
+  color: var(--bg);
+  box-shadow: 0 0 25px rgba(0, 255, 65, 0.4);
+  transform: scale(1.05);
+}
+
+.btn-choice[data-answer="slop"] {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.btn-choice[data-answer="slop"]:hover {
+  background: var(--red);
+  color: var(--bg);
+  box-shadow: 0 0 25px rgba(255, 0, 64, 0.4);
+}
+
+.btn-continue {
+  margin-top: 2rem;
+}
+
+/* ---- Landing Page ---- */
+.landing-content {
+  text-align: center;
+  z-index: 1;
+}
+
+.landing-content .subtitle {
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+}
+
+.redacted {
+  background: var(--green);
+  color: var(--green);
+  padding: 0 0.3rem;
+  user-select: none;
+}
+
+/* ---- Quiz Shared Styles ---- */
+.quiz-card {
+  background: var(--bg-card);
+  border: 1px solid #333;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  border-radius: 2px;
+}
+
+.quiz-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-result {
+  padding: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+  animation: stamp-in 0.4s ease-out;
+}
+
+.quiz-result.correct {
+  color: var(--green);
+  text-shadow: 0 0 15px var(--green);
+}
+
+.quiz-result.wrong {
+  color: var(--red);
+  text-shadow: 0 0 15px var(--red);
+}
+
+@keyframes stamp-in {
+  0% { transform: scale(3) rotate(-10deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: #222;
+  margin-top: 1rem;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--green);
+  width: 0%;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 8px var(--green);
+}
+
+/* ---- Conspiracy Generator ---- */
+.conspiracy-box {
+  background: var(--bg-card);
+  border: 1px solid #333;
+  padding: 2.5rem 2rem;
+  margin: 1.5rem 0;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conspiracy-box p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text-bright);
+}
+
+/* ---- Conspiracy Board ---- */
+#board-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: var(--bg-card);
+  border: 1px solid #333;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+#board-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#board-nodes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.board-node {
+  position: absolute;
+  background: var(--bg);
+  border: 2px solid var(--red);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-bright);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  user-select: none;
+  z-index: 2;
+}
+
+.board-node:hover {
+  background: var(--red);
+  color: var(--bg);
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.5);
+  transform: scale(1.1);
+}
+
+.board-node.visited {
+  border-color: var(--green);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+/* ---- Evidence Popup ---- */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-inner {
+  background: var(--bg-card);
+  border: 2px solid var(--red);
+  padding: 2.5rem;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  animation: popup-in 0.3s ease-out;
+}
+
+.popup-inner h3 {
+  font-family: var(--font-display);
+  color: var(--red);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.popup-inner p {
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes popup-in {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ---- Personality Quiz ---- */
+.pq-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.pq-option {
+  background: var(--bg-card);
+  border: 1px solid #333;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  line-height: 1.4;
+}
+
+.pq-option:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--bg-card-hover);
+  padding-left: 2rem;
+}
+
+/* ---- Result Card ---- */
+.result-card {
+  background: var(--bg-card);
+  border: 2px solid var(--green);
+  padding: 2.5rem;
+  margin: 1rem 0;
+  animation: popup-in 0.5s ease-out;
+}
+
+.result-card h3 {
+  font-family: var(--font-display);
+  color: var(--green);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--green);
+}
+
+.result-card p {
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.depth-meter {
+  margin-top: 1.5rem;
+  height: 8px;
+  background: #222;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.depth-meter::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: var(--depth, 50%);
+  background: linear-gradient(90deg, var(--green), var(--red));
+  border-radius: 4px;
+  transition: width 1s ease;
+  box-shadow: 0 0 10px var(--green);
+}
+
+/* ---- Finale ---- */
+.finale-text {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--text-bright);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  animation: fadeUp 1s ease-out;
+}
+
+.finale-subtext {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 1rem;
+  animation: fadeUp 1s ease-out;
+  animation-fill-mode: both;
+}
+
+.finale-subtext:nth-child(2) { animation-delay: 0.5s; }
+.finale-subtext:nth-child(3) { animation-delay: 1s; }
+
+.highlight {
+  color: var(--red);
+  text-shadow: 0 0 8px var(--red);
+}
+
+.credits {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+  animation: fadeUp 1s ease-out 1.5s both;
+}
+
+.credits p {
+  color: #555;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes fadeUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ---- Screen Shake ---- */
+@keyframes shake {
+  0%, 100% { transform: translate(0); }
+  10% { transform: translate(-5px, -3px); }
+  20% { transform: translate(5px, 3px); }
+  30% { transform: translate(-3px, 5px); }
+  40% { transform: translate(3px, -5px); }
+  50% { transform: translate(-5px, 3px); }
+  60% { transform: translate(5px, -3px); }
+  70% { transform: translate(-3px, -5px); }
+  80% { transform: translate(3px, 5px); }
+  90% { transform: translate(-5px, -3px); }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* ---- Utility ---- */
+.hidden {
+  display: none !important;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .glitch {
+    font-size: 1.6rem;
+  }
+
+  .glitch.large {
+    font-size: 2rem;
+  }
+
+  .section-inner {
+    padding: 1.5rem 1rem;
+  }
+
+  .quiz-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-choice {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .btn-danger {
+    font-size: 0.95rem;
+    padding: 0.8rem 1.8rem;
+  }
+
+  .stamp {
+    font-size: 0.7rem;
+    padding: 0.2rem 1rem;
+  }
+
+  #board-container {
+    height: 400px;
+  }
+
+  .board-node {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  .finale-text {
+    font-size: 1.3rem;
+  }
+
+  .conspiracy-box p {
+    font-size: 1rem;
+  }
+
+  .popup-inner {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .glitch {
+    font-size: 1.2rem;
+  }
+
+  .glitch.large {
+    font-size: 1.5rem;
+  }
+
+  #board-container {
+    height: 350px;
+  }
+}

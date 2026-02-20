@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE TRUTH THEY DON'T WANT YOU TO SEE</title>
+  <meta name="description" content="An interactive deep dive into AI slop and conspiracy theories. Enter if you dare.">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+  <canvas id="matrix-bg"></canvas>
+  <div class="scanline-overlay"></div>
+
+  <!-- SECTION 1: Landing -->
+  <section id="landing" class="section active">
+    <div class="landing-content">
+      <h1 class="glitch" data-text="THE TRUTH IS LOADING...">THE TRUTH IS LOADING...</h1>
+      <p class="subtitle">CLASSIFICATION LEVEL: <span class="redacted">██████████</span></p>
+      <button id="enter-btn" class="btn-danger">ENTER IF YOU DARE</button>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Real or AI Slop? Quiz -->
+  <section id="slop-quiz" class="section">
+    <div class="section-inner">
+      <div class="stamp">CLASSIFIED</div>
+      <h2 class="glitch" data-text="REAL OR AI SLOP?">REAL OR AI SLOP?</h2>
+      <p class="section-subtitle">Can you tell what's real anymore? Probably not.</p>
+      <div id="slop-quiz-container">
+        <div id="slop-question" class="quiz-card"></div>
+        <div id="slop-buttons" class="quiz-buttons">
+          <button class="btn-choice" data-answer="real">REAL</button>
+          <button class="btn-choice" data-answer="slop">AI SLOP</button>
+        </div>
+        <div id="slop-result" class="quiz-result hidden"></div>
+        <div id="slop-progress" class="progress-bar"><div id="slop-progress-fill" class="progress-fill"></div></div>
+      </div>
+      <div id="slop-final" class="hidden">
+        <h3 id="slop-score-title"></h3>
+        <p id="slop-score-text"></p>
+        <button id="slop-next-btn" class="btn-danger">GO DEEPER</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: Conspiracy Theory Generator -->
+  <section id="conspiracy-gen" class="section">
+    <div class="section-inner">
+      <div class="stamp top-secret">TOP SECRET</div>
+      <h2 class="glitch" data-text="CONSPIRACY GENERATOR">CONSPIRACY GENERATOR</h2>
+      <p class="section-subtitle">Every click reveals another truth THEY don't want you to know.</p>
+      <div id="conspiracy-output" class="conspiracy-box">
+        <p id="conspiracy-text">Press the button to generate forbidden knowledge...</p>
+      </div>
+      <button id="generate-btn" class="btn-danger">REVEAL THE TRUTH</button>
+      <button id="copy-btn" class="btn-secondary hidden">SHARE THIS TRUTH</button>
+      <button id="gen-next-btn" class="btn-danger btn-continue hidden">CONTINUE THE INVESTIGATION</button>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Conspiracy Board -->
+  <section id="conspiracy-board" class="section">
+    <div class="section-inner wide">
+      <div class="stamp">EVIDENCE</div>
+      <h2 class="glitch" data-text="THE BOARD">THE BOARD</h2>
+      <p class="section-subtitle">It's all connected. Click any node to reveal the evidence.</p>
+      <div id="board-container">
+        <canvas id="board-canvas"></canvas>
+        <div id="board-nodes"></div>
+      </div>
+      <div id="evidence-popup" class="popup hidden">
+        <div class="popup-inner">
+          <h3 id="evidence-title"></h3>
+          <p id="evidence-text"></p>
+          <button id="evidence-close" class="btn-secondary">I'VE SEEN ENOUGH</button>
+        </div>
+      </div>
+      <button id="board-next-btn" class="btn-danger btn-continue">HOW DEEP ARE YOU?</button>
+    </div>
+  </section>
+
+  <!-- SECTION 5: Personality Quiz -->
+  <section id="personality-quiz" class="section">
+    <div class="section-inner">
+      <div class="stamp top-secret">PSYCHOLOGICAL EVALUATION</div>
+      <h2 class="glitch" data-text="HOW DEEP ARE YOU?">HOW DEEP ARE YOU?</h2>
+      <p class="section-subtitle">Answer honestly. We're monitoring your responses.</p>
+      <div id="pq-container">
+        <div id="pq-question" class="quiz-card"></div>
+        <div id="pq-options" class="pq-options"></div>
+        <div id="pq-progress" class="progress-bar"><div id="pq-progress-fill" class="progress-fill"></div></div>
+      </div>
+      <div id="pq-result" class="hidden">
+        <div id="pq-result-card" class="result-card">
+          <h3 id="pq-result-title"></h3>
+          <p id="pq-result-text"></p>
+          <div id="pq-result-level" class="depth-meter"></div>
+        </div>
+        <button id="pq-next-btn" class="btn-danger">THE FINAL TRUTH</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: The Final Reveal -->
+  <section id="finale" class="section">
+    <div class="section-inner centered">
+      <h2 class="glitch large" data-text="THE TRUTH IS...">THE TRUTH IS...</h2>
+      <div id="finale-reveal" class="hidden">
+        <p class="finale-text">This entire presentation was generated by AI.</p>
+        <p class="finale-subtext">You just experienced <span class="highlight">pure, unfiltered AI slop</span> and you liked it.</p>
+        <p class="finale-subtext">The conspiracy... is you.</p>
+        <div class="credits">
+          <p>Made with suspicion and artificial intelligence</p>
+          <p>Trust no one. Especially this website.</p>
+        </div>
+      </div>
+      <button id="finale-btn" class="btn-danger">REVEAL</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

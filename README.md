@@ -1,6 +1,6 @@
-# THE TRUTH THEY DON'T WANT YOU TO SEE
+# BIRDS AREN'T REAL — Interactive Presentation
 
-An interactive web experience about AI slop and conspiracy theories. Built with pure HTML, CSS, and JavaScript.
+An interactive web experience exploring the Birds Aren't Real movement — the satirical conspiracy theory that all birds are government surveillance drones.
 
 ## Live Site
 
@@ -8,11 +8,12 @@ An interactive web experience about AI slop and conspiracy theories. Built with 
 
 ## What's Inside
 
-- **Real or AI Slop? Quiz** -- Can you tell the difference between real facts and AI-generated nonsense?
-- **Conspiracy Theory Generator** -- Randomly combines subjects, actions, and objects into absurd conspiracy theories
-- **The Board** -- An interactive Pepe Silvia-style conspiracy board with clickable nodes and "evidence"
-- **How Deep Are You? Quiz** -- A personality quiz that rates your conspiracy depth level
-- **The Final Reveal** -- No spoilers
+- **The Movement** -- An interactive timeline of the real Birds Aren't Real movement, from Peter McIndoe's 2017 poster to the 2024 book deal
+- **Fact or Gov't Lie? Quiz** -- Can you tell real bird facts from "government drone" propaganda?
+- **Bird Truth Generator** -- Randomly generates absurd surveillance bird conspiracies
+- **The Evidence Board** -- A Pepe Silvia-style conspiracy board with clickable nodes (Power Lines, Project Ornithex, Bird Poop Tracking Compound, etc.)
+- **How Awake Are You? Quiz** -- A personality quiz rating your bird awareness level
+- **The Final Truth** -- No spoilers. If it flies, it spies.
 
 ## Tech
 
@@ -24,4 +25,4 @@ An interactive web experience about AI slop and conspiracy theories. Built with 
 
 Just open `index.html` in a browser. No install needed.
 
-To deploy: enable GitHub Pages in repo Settings → Pages → Source: main branch, root `/`.
+To deploy: enable GitHub Pages in repo Settings -> Pages -> Source: main branch, root `/`.

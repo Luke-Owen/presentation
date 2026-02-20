@@ -1,11 +1,10 @@
 // ============================================================
-// AI SLOP & CONSPIRACY THEORY INTERACTIVE WEB APP
+// BIRDS AREN'T REAL — INTERACTIVE PRESENTATION
 // ============================================================
 
 (function () {
   'use strict';
 
-  // ---- Section Navigation ----
   const sections = document.querySelectorAll('.section');
 
   function showSection(id) {
@@ -35,7 +34,7 @@
     resize();
     window.addEventListener('resize', resize);
 
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*<>[]{}|/\\~`';
+    const chars = 'BIRDSARENTREAL01IF1TFLIES1TSPIES@#$%<>[]{}|/\\~`';
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
@@ -61,54 +60,76 @@
 
   // ---- SECTION 1: Landing Page ----
   function initLanding() {
-    const btn = document.getElementById('enter-btn');
-    btn.addEventListener('click', function () {
+    document.getElementById('enter-btn').addEventListener('click', function () {
+      shakeScreen();
+      setTimeout(() => showSection('timeline'), 500);
+    });
+  }
+
+  // ---- SECTION 2: Timeline ----
+  function initTimeline() {
+    document.querySelectorAll('.timeline-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        const detail = card.querySelector('.timeline-detail');
+        const isExpanded = card.classList.contains('expanded');
+
+        if (isExpanded) {
+          card.classList.remove('expanded');
+          detail.classList.add('hidden');
+        } else {
+          card.classList.add('expanded');
+          detail.classList.remove('hidden');
+        }
+      });
+    });
+
+    document.getElementById('timeline-next-btn').addEventListener('click', function () {
       shakeScreen();
       setTimeout(() => showSection('slop-quiz'), 500);
     });
   }
 
-  // ---- SECTION 2: Real or AI Slop? Quiz ----
+  // ---- SECTION 3: Real Bird Fact or Gov't Lie? ----
   const slopQuizData = [
     {
-      text: '"A new study found that goldfish have a longer attention span than humans, averaging 9 seconds compared to our 8."',
-      answer: 'slop',
-      explanation: 'AI SLOP — This "fact" has been debunked repeatedly but AI keeps generating it.'
-    },
-    {
-      text: '"NASA confirmed that the smell of space is similar to seared steak and gunpowder."',
+      text: '"Pigeons can recognize themselves in a mirror, passing the self-awareness test that most animals fail."',
       answer: 'real',
-      explanation: 'LEGIT — Astronauts have actually described this smell on their suits after spacewalks.'
+      explanation: 'REAL FACT — Pigeons are one of the few non-mammal species to pass the mirror test, demonstrated in a 2008 study.'
     },
     {
-      text: '"Scientists discovered that playing Mozart to cheese while it ages makes it taste better and more mild."',
+      text: '"The last real bird in North America died in 1971 when the CIA completed Project Ornithex, a classified avian replacement program."',
+      answer: 'fake',
+      explanation: 'GOV\'T LIE — This is the core claim of the Birds Aren\'t Real movement. Project Ornithex doesn\'t exist... or does it?'
+    },
+    {
+      text: '"A woodpecker\'s tongue wraps all the way around the back of its skull to cushion its brain during pecking."',
       answer: 'real',
-      explanation: 'LEGIT — A Swiss cheesemaker actually ran this experiment with the University of the Arts in Bern.'
+      explanation: 'REAL FACT — The hyoid bone in woodpeckers wraps around the skull, acting as a shock absorber. Nature is wild.'
     },
     {
-      text: '"Researchers at MIT developed an AI that can predict your personality based on how you charge your phone."',
-      answer: 'slop',
-      explanation: 'AI SLOP — Pure fabrication. Classic AI-generated "study" bait.'
+      text: '"Bird \'migration\' is actually a scheduled firmware update cycle. They fly south to receive software patches at designated relay stations."',
+      answer: 'fake',
+      explanation: 'GOV\'T LIE — Classic Birds Aren\'t Real doctrine. Migration is real, but this explanation is way more fun.'
     },
     {
-      text: '"Oxford University found that people who swear a lot are more honest and have a larger vocabulary."',
-      answer: 'slop',
-      explanation: 'AI SLOP — A mashup of multiple distorted studies that AI loves to recombine into one fake claim.'
-    },
-    {
-      text: '"A town in Norway is so far north that the sun doesn\'t set for 76 days straight in summer."',
+      text: '"Crows can remember individual human faces and hold grudges against specific people for years."',
       answer: 'real',
-      explanation: 'LEGIT — Hammerfest and other northern Norwegian towns experience the midnight sun.'
+      explanation: 'REAL FACT — University of Washington researchers proved crows recognize and remember threatening faces for 5+ years.'
     },
     {
-      text: '"Honey never spoils. Archaeologists found 3000-year-old honey in Egyptian tombs that was still edible."',
+      text: '"Birds sitting on power lines are wirelessly recharging their internal surveillance batteries through induction charging."',
+      answer: 'fake',
+      explanation: 'GOV\'T LIE — The recharging theory is one of the movement\'s most iconic claims. Birds actually sit on wires because their feet insulate them.'
+    },
+    {
+      text: '"Flamingos can only eat with their heads completely upside down, filtering food through comb-like structures in their beaks."',
       answer: 'real',
-      explanation: 'LEGIT — This one is actually true, though AI slop articles love to exaggerate the details.'
+      explanation: 'REAL FACT — Flamingos are obligate filter feeders and must invert their heads to eat. Real birds are stranger than fiction.'
     },
     {
-      text: '"A Japanese company invented a device that converts your screams into electricity to power your phone."',
-      answer: 'slop',
-      explanation: 'AI SLOP — This circulates constantly on AI content farms. Pure fiction.'
+      text: '"A group of flamingos is called a \'flamboyance.\'"',
+      answer: 'real',
+      explanation: 'REAL FACT — This is 100% real. Whoever named bird groups was clearly having a good time.'
     }
   ];
 
@@ -166,14 +187,14 @@
     let title, text;
 
     if (pct >= 80) {
-      title = 'SLOP DETECTOR: ELITE';
-      text = 'You got ' + slopScore + '/' + slopQuizData.length + ' correct. You can smell AI slop from a mile away. The algorithm fears you.';
+      title = 'DRONE DETECTOR: ELITE';
+      text = 'You got ' + slopScore + '/' + slopQuizData.length + ' correct. You can tell real bird facts from government propaganda. The resistance needs you.';
     } else if (pct >= 50) {
-      title = 'SLOP DETECTOR: COMPROMISED';
-      text = 'You got ' + slopScore + '/' + slopQuizData.length + ' correct. The AI content pipeline has partially infiltrated your brain. Stay vigilant.';
+      title = 'DRONE DETECTOR: COMPROMISED';
+      text = 'You got ' + slopScore + '/' + slopQuizData.length + ' correct. The bird propaganda machine has partially infiltrated your mind. Stay vigilant near power lines.';
     } else {
-      title = 'SLOP DETECTOR: ASSIMILATED';
-      text = 'You got ' + slopScore + '/' + slopQuizData.length + ' correct. You are ' + (100 - pct) + '% compromised by the algorithm. There may be no saving you.';
+      title = 'DRONE DETECTOR: ASSIMILATED';
+      text = 'You got ' + slopScore + '/' + slopQuizData.length + ' correct. You can\'t tell real birds from government lies. The drones have already won your mind.';
     }
 
     document.getElementById('slop-score-title').textContent = title;
@@ -186,29 +207,29 @@
     });
   }
 
-  // ---- SECTION 3: Conspiracy Theory Generator ----
+  // ---- SECTION 4: Bird Truth Generator ----
   const conspiracyParts = {
     subjects: [
-      'The government', 'Big Tech', 'Your smart fridge', 'Birds',
-      'The Illuminati', 'Mark Zuckerberg', 'Your dentist', 'IKEA',
-      'The moon', 'WiFi routers', 'ChatGPT', 'Pigeons',
-      'The postal service', 'Breakfast cereal companies', 'Your Roomba'
+      'The CIA', 'Your local pigeon', 'Seagulls', 'The Audubon Society',
+      'Robins', 'Elon Musk\'s satellites', 'Pelicans', 'Owls',
+      'The bird feeder industry', 'Crows', 'Canada geese',
+      'Ornithologists', 'Hummingbird drones', 'The Pentagon', 'Woodpeckers'
     ],
     actions: [
-      'is secretly controlling', 'has been replaced by AI clones of',
-      'is monitoring you through', 'is hiding evidence about',
-      'is using 5G to manipulate', 'has a secret underground bunker full of',
-      'is putting microchips in', 'is beaming subliminal messages via',
-      'made a deal with aliens to suppress', 'is running simulations of'
+      'are secretly recording', 'have been programmed to surveil',
+      'are transmitting data about', 'were deployed to monitor',
+      'are using sonic frequencies to track', 'were upgraded during COVID lockdowns to scan',
+      'are beaming footage of', 'have been weaponized to disrupt',
+      'are collecting DNA samples from', 'are running facial recognition on'
     ],
     objects: [
-      'your dreams', 'the TikTok algorithm', 'fluoride',
-      'the birds outside your window', 'every Uber driver',
-      'the weather', 'sourdough starter cultures',
-      'Taylor Swift', 'your Spotify Wrapped',
-      'the concept of time', 'mattress stores',
-      'the Bermuda Triangle', 'USB-C cables',
-      'crop circles', 'your browser history'
+      'your daily routine', 'dissidents who question the narrative',
+      'everyone who looks up', 'the entire midwest',
+      'anyone who feeds them bread', 'your license plate',
+      'all outdoor conversations', 'people who own cats',
+      'resistance members', 'anyone near a 5G tower',
+      'political rally attendees', 'anyone who has googled "birds aren\'t real"',
+      'couples in parks', 'children at playgrounds', 'your exact GPS coordinates'
     ]
   };
 
@@ -249,25 +270,25 @@
     });
   }
 
-  // ---- SECTION 4: Conspiracy Board ----
+  // ---- SECTION 5: Evidence Board ----
   const boardData = [
-    { label: 'AI Art', x: 15, y: 15, evidence: 'Every AI-generated image contains hidden watermarks that, when decoded, spell out "OBEY". The art isn\'t for you — it\'s for THEM.' },
-    { label: 'Flat Earth', x: 70, y: 10, evidence: 'Why does every airline flight path avoid the center of the "globe"? Because there\'s nothing there. It\'s just a texture map.' },
-    { label: 'Birds Aren\'t Real', x: 45, y: 8, evidence: 'The last real bird died in 2001. Every bird you\'ve seen since is a government surveillance drone. Notice how they sit on power lines? Recharging.' },
-    { label: '5G Mind Control', x: 10, y: 55, evidence: 'Why did everyone start dancing on TikTok at the same time 5G rolled out? Coincidence? The towers emit a frequency that makes you crave content.' },
-    { label: 'Simulation Theory', x: 80, y: 50, evidence: 'The reason déjà vu exists is because the simulation occasionally reloads a previous save state. You\'re experiencing a buffer.' },
-    { label: 'Mattress Firms', x: 50, y: 45, evidence: 'There are more mattress stores than there are people who need mattresses. They\'re clearly money laundering fronts. Or portals.' },
-    { label: 'Moon Landing', x: 25, y: 80, evidence: 'Stanley Kubrick was hired to fake the moon landing. But he was such a perfectionist that he insisted on filming on location.' },
-    { label: 'Lizard People', x: 75, y: 80, evidence: 'Ever notice how tech CEOs blink weird during congressional hearings? Reptilian membrane. They can\'t fully suppress it under stress.' },
-    { label: 'Time Cube', x: 50, y: 75, evidence: 'There are actually 4 simultaneous days happening at once. You\'ve been educated stupid. The cubic nature of time has been suppressed since 1884.' },
-    { label: 'Deep State AI', x: 40, y: 30, evidence: 'ChatGPT isn\'t just a chatbot. It\'s a recruitment tool. Every conversation trains a profile. If you\'re reading this, you\'ve already been flagged.' }
+    { label: 'Power Lines', x: 15, y: 12, evidence: 'Why do birds sit on power lines? They\'re not resting. They\'re recharging. The voltage matches their battery specs exactly. High-voltage lines = fast charging. Low-voltage = trickle charge. Coincidence?' },
+    { label: 'Project Ornithex', x: 70, y: 8, evidence: 'In 1959, the CIA launched a classified program to replace every bird in North America with surveillance drones. By 1971, the project was complete. Budget: $14.2 billion. Status: Active. Evidence: classified.' },
+    { label: 'Bird Feeders', x: 45, y: 10, evidence: 'You\'re literally buying fuel for government surveillance equipment. Bird seed is chemically optimized drone fuel. The $5 billion "bird feed" industry is a Pentagon supply chain hiding in plain sight.' },
+    { label: 'Migration', x: 10, y: 50, evidence: 'Every year, billions of "birds" fly south. It\'s not instinct — it\'s a firmware update cycle. They return with upgraded cameras, better microphones, and refreshed GPS modules. Notice how they always come back to the SAME spot?' },
+    { label: 'Audubon Society', x: 80, y: 45, evidence: 'Founded in 1905 as a "conservation" group. Real purpose: managing the transition from biological birds to drones and ensuring nobody notices. Their binoculars point BOTH ways.' },
+    { label: 'Eggs', x: 50, y: 42, evidence: 'If birds are drones, what are eggs? Assembly pods. Factory farms aren\'t food production — they\'re drone manufacturing plants operating at industrial scale in plain sight. The "chicken or egg" question is a psyop.' },
+    { label: 'COVID Lockdowns', x: 25, y: 78, evidence: 'Remember 2020 when everyone stayed inside? They used that window to replace the batteries in every single bird. The pigeons looked different after. You noticed. You just didn\'t say anything.' },
+    { label: 'Cat Instincts', x: 75, y: 75, evidence: 'Cats attack birds on pure instinct. But cats predate drones by thousands of years. Either cats can detect surveillance technology innately, or the government has ALWAYS been watching. Both options are terrifying.' },
+    { label: 'Bird Poop', x: 50, y: 72, evidence: 'What you think is poop is actually a liquid tracking compound called Avian Discharged Residue Compound (ADRC). It marks your car for satellite identification. Ever wonder why it\'s always YOUR car? Now you know.' },
+    { label: 'Extinct Species', x: 40, y: 28, evidence: 'The dodo, the passenger pigeon, the great auk — they didn\'t go "extinct." They were prototype drones that got decommissioned. Version 1.0 bugs. Overheating issues. Had to recall them before anyone noticed.' }
   ];
 
   const boardConnections = [
-    [0, 5], [0, 9], [1, 4], [1, 6],
-    [2, 3], [2, 7], [3, 9], [4, 8],
-    [5, 8], [6, 7], [7, 4], [9, 0],
-    [3, 5], [1, 8], [6, 4], [2, 9]
+    [0, 3], [0, 6], [1, 4], [1, 9],
+    [2, 5], [2, 7], [3, 6], [4, 5],
+    [5, 8], [6, 7], [7, 8], [8, 9],
+    [0, 9], [1, 2], [3, 4], [6, 8]
   ];
 
   function initBoard() {
@@ -337,60 +358,60 @@
     document.getElementById('evidence-popup').classList.remove('hidden');
   }
 
-  // ---- SECTION 5: Personality Quiz ----
+  // ---- SECTION 6: Personality Quiz ----
   const personalityQuestions = [
     {
-      question: 'Your friend sends you a news article. Your first instinct is to...',
+      question: 'A pigeon lands near your lunch. You...',
       options: [
-        { text: 'Read it and form an opinion', score: 0 },
-        { text: 'Check if it\'s from a reliable source', score: 1 },
-        { text: 'Google "is [headline] a psyop"', score: 2 },
-        { text: 'Assume it\'s a distraction from something bigger', score: 3 }
+        { text: 'Toss it a crumb and carry on eating', score: 0 },
+        { text: 'Shoo it away — dirty birds', score: 1 },
+        { text: 'Cover your phone camera immediately', score: 2 },
+        { text: 'Whisper its serial number into your sleeve and report to base', score: 3 }
       ]
     },
     {
-      question: 'You see a bird sitting on a power line. Your first thought is...',
+      question: 'You hear birds chirping at 4am. You think...',
       options: [
-        { text: '"What a nice bird"', score: 0 },
-        { text: '"I wonder what species that is"', score: 1 },
-        { text: '"Is it... watching me?"', score: 2 },
-        { text: '"Recharging. They always recharge at 3pm."', score: 3 }
+        { text: '"It\'s the dawn chorus, how lovely"', score: 0 },
+        { text: '"Ugh, so annoying this early"', score: 1 },
+        { text: '"Sounds like a scheduled data upload cycle"', score: 2 },
+        { text: '"I should jam the signal with white noise before they finish transmitting"', score: 3 }
       ]
     },
     {
-      question: 'Your WiFi goes down for 10 minutes. You...',
+      question: 'Someone gives you a bird feeder as a gift. You...',
       options: [
-        { text: 'Restart the router like a normal person', score: 0 },
-        { text: 'Assume your ISP is having issues', score: 1 },
-        { text: 'Check if there\'s a government press conference happening', score: 2 },
-        { text: 'Immediately check for 5G tower maintenance in your area', score: 3 }
+        { text: 'Hang it in the garden, lovely', score: 0 },
+        { text: 'Regift it — not really your thing', score: 1 },
+        { text: 'Burn it. You\'re not fueling government drones.', score: 2 },
+        { text: 'Set up a counter-surveillance camera pointed directly at it', score: 3 }
       ]
     },
     {
-      question: 'You get an ad for something you only THOUGHT about. You...',
+      question: 'You see a flock of geese flying in V formation. You think...',
       options: [
-        { text: 'Dismiss it as coincidence', score: 0 },
-        { text: 'Blame the algorithm and cookies', score: 1 },
-        { text: 'Cover your phone\'s microphone with tape', score: 2 },
-        { text: 'Accept that your toaster has been reporting to Amazon since 2019', score: 3 }
+        { text: '"Beautiful — nature is amazing"', score: 0 },
+        { text: '"Must be migration season"', score: 1 },
+        { text: '"That\'s a tactical drone formation, not migration"', score: 2 },
+        { text: '"Squadron deployment. They\'re heading to the firmware update station."', score: 3 }
       ]
     },
     {
-      question: 'Someone says "the moon landing was real." You respond with...',
+      question: 'A bird poops on your car. You...',
       options: [
-        { text: '"Obviously, yes"', score: 0 },
-        { text: '"Which one?"', score: 1 },
-        { text: '"That\'s what they want you to think"', score: 2 },
-        { text: '*slowly removes tinfoil hat* "We need to talk"', score: 3 }
+        { text: 'Wash it off at the next gas station', score: 0 },
+        { text: 'Get annoyed and curse the bird', score: 1 },
+        { text: 'Realize your car has been GPS-tagged for satellite tracking', score: 2 },
+        { text: 'Scrape a sample into a ziplock bag and send it to an independent lab', score: 3 }
       ]
     },
     {
-      question: 'You discover this entire website was made by AI. You feel...',
+      question: 'Someone tells you "Birds Aren\'t Real is just a joke." You respond...',
       options: [
-        { text: 'Amused', score: 0 },
-        { text: 'Mildly concerned about society', score: 1 },
-        { text: 'Validated — you suspected it all along', score: 2 },
-        { text: 'Nothing. You\'re probably AI too.', score: 3 }
+        { text: '"Ha, yeah it\'s pretty funny"', score: 0 },
+        { text: '"It makes some good points about misinformation though"', score: 1 },
+        { text: '"That\'s exactly what a government agent would say"', score: 2 },
+        { text: '*stares in silence, then hands them a pamphlet* "Read this. Then we\'ll talk."', score: 3 }
       ]
     }
   ];
@@ -437,17 +458,17 @@
     let title, text;
 
     if (pct <= 20) {
-      title = 'LEVEL: NORMIE';
-      text = 'You trust the mainstream narrative. Blissfully unaware. The sheep emoji was invented for people like you. Enjoy your fluoride.';
+      title = 'LEVEL: OBLIVIOUS';
+      text = 'You still think they\'re real. You feed them. You watch them. You even think they\'re "cute." The drones have won your mind completely. There may be no saving you.';
     } else if (pct <= 45) {
-      title = 'LEVEL: SUSPICIOUS';
-      text = 'You\'ve started asking questions. Good. But you\'re only scratching the surface. The rabbit hole goes much deeper.';
+      title = 'LEVEL: QUESTIONING';
+      text = 'You\'ve noticed things. The way they stare. The way they sit in perfect rows on wires. Something doesn\'t add up. Keep pulling the thread.';
     } else if (pct <= 70) {
-      title = 'LEVEL: AWAKE';
-      text = 'You see the patterns. You connect the dots. Your search history would concern a therapist. You\'re on the right track.';
+      title = 'LEVEL: AWARE';
+      text = 'You see them for what they are. You\'ve stopped feeding the enemy. You cover your cameras near "nesting" areas. The resistance needs people like you.';
     } else {
-      title = 'LEVEL: THEY\'RE WATCHING YOU RIGHT NOW';
-      text = 'You have ascended beyond the matrix. You see the code. The birds report to you now. There is no going back. Welcome to the inner circle.';
+      title = 'LEVEL: BIRD TRUTHER';
+      text = 'You are fully awake. You can identify drone models by wingspan. You haven\'t been to a park in years. The birds report to YOU now. Welcome to the inner circle.';
     }
 
     document.getElementById('pq-result-title').textContent = title;
@@ -460,7 +481,7 @@
     });
   }
 
-  // ---- SECTION 6: Finale ----
+  // ---- SECTION 7: Finale ----
   function initFinale() {
     const btn = document.getElementById('finale-btn');
     btn.addEventListener('click', function () {
@@ -488,6 +509,7 @@
   function init() {
     initMatrix();
     initLanding();
+    initTimeline();
     initSlopQuiz();
     initConspiracyGen();
     initBoard();

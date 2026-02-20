@@ -300,8 +300,11 @@ body {
 /* ---- Landing Page Videos ---- */
 .landing-videos {
   display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
   gap: 1rem;
   justify-content: center;
+  align-items: center;
   margin: 1.5rem 0;
 }
 
@@ -756,8 +759,8 @@ body {
   }
 
   .landing-vid {
-    width: 80px;
-    height: 142px;
+    width: 90px;
+    height: 160px;
   }
 
   .video-gallery {

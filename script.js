@@ -338,12 +338,66 @@
     });
   }
 
+  // ---- Spy Stop-Motion Animation ----
+  var spyFrames = [];
+  var spyAnimationRunning = false;
+
+  function preloadSpyFrames() {
+    var container = document.getElementById('spy-animation');
+    if (!container) return;
+    for (var i = 1; i <= 6; i++) {
+      var img = document.createElement('img');
+      img.src = 'images/spy-' + i + '.png';
+      img.alt = 'Spy frame ' + i;
+      container.appendChild(img);
+      spyFrames.push(img);
+    }
+  }
+
+  function startSpyAnimation() {
+    if (spyAnimationRunning || spyFrames.length === 0) return;
+    spyAnimationRunning = true;
+
+    var currentFrame = 0;
+    var posX = -20;
+    var direction = 1;
+    var frameRate = 280;
+
+    function tick() {
+      if (!spyAnimationRunning) return;
+
+      spyFrames.forEach(function (f) { f.classList.remove('spy-active'); });
+
+      spyFrames[currentFrame].classList.add('spy-active');
+      spyFrames[currentFrame].style.left = posX + '%';
+
+      currentFrame = (currentFrame + 1) % spyFrames.length;
+      posX += 3 * direction;
+
+      if (posX > 85) {
+        direction = -1;
+        spyFrames.forEach(function (f) { f.style.transform = 'scaleX(-1)'; });
+      } else if (posX < -10) {
+        direction = 1;
+        spyFrames.forEach(function (f) { f.style.transform = 'scaleX(1)'; });
+      }
+
+      setTimeout(tick, frameRate);
+    }
+
+    tick();
+  }
+
   // ---- SECTION 6: Finale ----
   function initFinale() {
+    preloadSpyFrames();
+
     const btn = document.getElementById('finale-btn');
     btn.addEventListener('click', function () {
       btn.classList.add('hidden');
       shakeScreen();
+
+      startSpyAnimation();
 
       setTimeout(function () {
         document.getElementById('finale-reveal').classList.remove('hidden');
